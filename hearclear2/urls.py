@@ -20,9 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from page import views
-#from page.views import SongFileDetailView 
 from accounts import views as accounts_views
-#from page import songinfo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,15 +31,10 @@ urlpatterns = [
     path('HearClear/upload', views.upload, name = 'upload'),
     path('signup', accounts_views.signup, name='signup'),
     path('HearClear/comments/reply', views.reply, name='reply'),
-    #url(r'^songfile/(?P<pk>\d+)/$', views.songdetails, name='songdetails'),
-    #path('HearClear/details', views.songdetails, name='songdetails'),
-    #path('HearClear/<int:pk>/', SongFileDetailView.as_view(), name='song-detail'),
+    path('HearClear/<int:pk>/delete', views.delete_song, name='delete_song'),
     path('HearClear/<int:pk>/', views.songdetails, name='song-detail'),
-    #path('HearClear/info', views.result, name='info'),
-    path('HearClear/testing', views.testing, name='testing'),
-    #path('HearClear/<str:song_id>/', views.songs, name='songs'),
-    #path('secret/', accounts_views.secret_page, name = 'secret'),
-    #url(r'^songs/(?P<filter_by>[a-zA_Z]+)/$', views.upload, name='songs'),
+    path('HearClear/results/', views.searchbar, name='searchbar'),
+    
 ]
 
 if settings.DEBUG:

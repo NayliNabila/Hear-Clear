@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Search
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Hear Clear</li>
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th> Title </th>
+                <th> Date </th>
+                <th> Delete </th>
+            <tr>
+        <thead>
+
+        <tbody>
+
+        {% if post %}
+        <h1> Search Result Found </h1>
+
+        <br>
+
+            {% for songfile in post %}
+            <tr>
+                <td> <a href="{% url 'song-detail' songfile.pk %}">{{ songfile.title }} </a>  </td>
+                <td> {{ songfile.date }}</td>
+                <td> 
+                    <form method="post" action = "{% url 'delete_song' songfile.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class = "btn btn-outline-primary"> Delete </button>
+                    </form> </td>
+            </tr>
+
+            {% endfor %}
+            {% else %}
+            <h1> Search Result NOT Found </h1>
+            {% endif %}
+        </tbody>
+    </table>
+    {% endblock %}

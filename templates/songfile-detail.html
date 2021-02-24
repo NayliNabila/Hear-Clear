@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+
+
+
+
 {% block title %}
     {{ songfile.title }}
 {% endblock %}
@@ -10,6 +14,57 @@
 {% endblock %}
 
 {% block content %}
+
+<style>
+
+    .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #00BFFF;
+}
+
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: #ADD8E6;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #00008B;
+}
+
+.styled-table tbody tr:first-of-type {
+    border-top: 2px solid #00008B;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #00008B;
+}
+
+
+</style>
+
     <h2>{{songfile.title}}</h2>
     <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 
@@ -21,12 +76,24 @@
                    Your browser dose not Support the audio Tag
         
         </audio>
-        <table class="table">
-            <thead class="thead-inverse">
-            <tr>
-            <td> {{ songfile.duration }}</td>
-            </tr>
+
+        <table class="styled-table">
+                <tbody>
+                    <tr>
+                      <td> Duration </td>
+                      <td> {{ songfile.duration }}</td>
+                    </tr>
+                    <tr>
+                      <td> File Size </td>
+                      <td> {{ songfile.file_size }}</td>
+                    </tr>
+                    <tr>
+                        <td> Sampling Frequency </td>
+                        <td> {{ songfile.samp_freq }}</td>
+                    </tr>
+                </tbody>
         </table>
+
         
     
 {% endblock %}

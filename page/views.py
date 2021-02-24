@@ -18,42 +18,21 @@ def home (request):
         'songs' : songs
     })
 
-
-def testing (request):
-    #songfile = get_object_or_404(SongFile, pk=pk)
-    #path = SongFile.objects.get(filetype)
-    dir_image = "./media/audioimage"
-    dir_sound = "./media/songs"
-    audio_files = glob (dir_sound + "/*.wav")
-    #sound =  os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media/song/')
-    audio, sr = librosa.load(audio_files[1])
-    #time = np.arrange(0, len(audio))/sr
-    fig, ax = plt.subplots(1)
-    ax.set(title='Monophonic')
-    ax.label_outer()
-    librosa.display.waveplot(audio, sr=sr, ax=ax)
-    plt.show()
-    plt.savefig(dir_image + "/*.png")
-    return render (request, 'testing.html')
-
 def songdetails (request, pk):
     songfile = get_object_or_404(SongFile, pk=pk)
     return render (request, 'songfile-detail.html', { 'songfile' : songfile})
 
-"""class SongFileDetailView (DetailView):
-    model = SongFile
-    template_name = 'songfile-detail.html'
-    fields = ['title','audio']
+def delete_song(request, pk):
+    if request.method == 'POST':
+        songs = SongFile.objects.get(pk=pk)
+        songs.delete()
+        return redirect ('home')
 
-    def form_valid(self, form):
-
-        Song = SongInfo(form.instance.audio)
-        form.instance.image = Song[0]
-        form.instance.duration = Song[1]
-        form.instance.samp_freq = Song[2]
-        
-        return super().form_valid(form)"""
-
+def searchbar(request):
+    if request.method == "GET":
+        search = request.GET.get('search')
+        post = SongFile.objects.all().filter(title=search)
+        return render (request, 'searchbar.html', {'post' : post})
 
 def aboutme (request):
     return render(request, 'aboutme.html')
