@@ -28,8 +28,6 @@ urlpatterns = [
     path('HearClear', views.home, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('HearClear/aboutme', views.aboutme),
-    #path('HearClear/<int:pk>/comments', views.comments, name='comments'),
-    #path('HearClear/upload', views.upload, name = 'upload'),
     path('signup', accounts_views.signup, name='signup'),
     path('HearClear/comments/reply', views.reply, name='reply'),
     path('HearClear/<int:pk>/delete', views.delete_song, name='delete_song'),
