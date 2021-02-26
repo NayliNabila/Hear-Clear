@@ -17,17 +17,17 @@ def home (request):
         'songs' : songs
     })
 
-def songdetails (request, pk):
+def songdetails (request, pk):                                                      # function of specific song which will be display in song details page
     songfile = get_object_or_404(SongFile, pk=pk)
     return render (request, 'songfile-detail.html', { 'songfile' : songfile})
 
-def delete_song(request, pk):
+def delete_song(request, pk):                                                       # for deleting part
     if request.method == 'POST':
         songs = SongFile.objects.get(pk=pk)
         songs.delete()
         return redirect ('home')
 
-def searchbar(request):
+def searchbar(request):                                                             # for searching process
     if request.method == "GET":
         search = request.GET.get('search')
         post = SongFile.objects.all().filter(title=search)
@@ -51,7 +51,7 @@ class UploadView(CreateView):
     #fields = '__all__' 
 
     def form_valid(self, form):
-        form.instance.author_id = self.request.user.id
+        form.instance.author_id = self.request.user.id                              # to get user id to record which user is upload the audio
         return super().form_valid(form)
     success_url= reverse_lazy('home')
 
@@ -62,11 +62,11 @@ class AddCommentView(CreateView):
     #fields = '__all__' 
 
     def form_valid(self, form):
-        form.instance.songfile_id = self.kwargs['pk']
+        form.instance.songfile_id = self.kwargs['pk']                               # to get the audio id to know which song the user commenting
         return super().form_valid(form)
     success_url= reverse_lazy('home')
 
-class UserEditView(generic.UpdateView):
+class UserEditView(generic.UpdateView):                                             # for edit the profile of user registered
     form_class = UserChangeForm 
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy ('home')
