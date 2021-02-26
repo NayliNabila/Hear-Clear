@@ -2,13 +2,10 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.files.storage import FileSystemStorage
-#from django.http import Http404
 
 from .form import SongForm, CommentForm
 from .models import SongFile, Comments
 from django.db import models
-#from .models import ModelWithFileField
-#from .songinfo import SongInfo
 from django.views import generic
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserChangeForm
@@ -47,18 +44,6 @@ def base(request):
 def reply(request):
     return render(request, 'reply.html')
 
-"""def upload (request):
-    if request.method =='POST':
-        form = SongForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = SongForm()
-        return render(request, 'upload.html', {
-        'form' : form
-    })"""
-
 class UploadView(CreateView):
     model = SongFile
     form_class = SongForm
@@ -89,37 +74,3 @@ class UserEditView(generic.UpdateView):
     def get_object(self):
         return self.request.user
 
-
-
-#def comments (request):
- #   if request.method =='POST':
-  #      form = CommentsForm(request.POST, request.FILES)
-   #     if form.is_valid():
-    #        form.save()
-     #       return redirect('song-detail')
-      #      
-    #else:
-     #   form = CommentsForm()
-      #  return render(request, 'comments.html', {
-       # 'form' : form})
-
-
-
-#def songs (request):
-#    return render(request, 'songs.html')
-
-#class PostSongs():
-#    model = Post
-#    fields = ['title','content','audio']
-
-
-
-"""    def form_valid(self, form):
-        form.instance.author =self.request.user
-        
-        SoundResult =  Sound(form.instance.audio)
-        form.instance.image = SoundResult[0]
-        form.instance.duration = SoundResult[1]
-        form.instance.samp_freq = SoundResult[2]
-        
-        return super().form_valid(form)"""
