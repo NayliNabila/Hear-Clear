@@ -1,2 +1,2 @@
 # Hear-Clear
-Hear Clear is a system that use to analyse any sound or music given by user. There are two ways to send sound that is by record the sound on the that moment or upload the sound from the devices.
+Hear Clear is a system that use to analyse any sound or music given by user. User need to log in first before start upload the songs to the website. After the song uploaded, the user can get the waveform picture by clicking on the name of the song.  
