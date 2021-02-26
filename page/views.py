@@ -44,7 +44,7 @@ def base(request):
 def reply(request):
     return render(request, 'reply.html')
 
-class UploadView(CreateView):
+class UploadView(CreateView):                                                       # to crate view of the form for uploading the audio
     model = SongFile
     form_class = SongForm
     template_name = 'upload.html'
@@ -55,7 +55,7 @@ class UploadView(CreateView):
         return super().form_valid(form)
     success_url= reverse_lazy('home')
 
-class AddCommentView(CreateView):
+class AddCommentView(CreateView):                                                   # to create view of the form for comments the song
     model = Comments
     form_class = CommentForm
     template_name = 'comments.html'
