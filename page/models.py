@@ -44,20 +44,20 @@ class SongFile(models.Model):                                               # cl
     def save (self, *args, **kwargs):                                       # process of analyzing audio start 
         super(SongFile,self).save(*args, **kwargs)
         dir_image = "./media/audioimage/image"
-        imagePath = dir_image + str(timezone.now()) + ".png"
-        audio, sr = librosa.load(self.audio.path)
+        imagePath = dir_image + str(timezone.now()) + ".png"                # naming the image by using date and timezone now
+        audio, sr = librosa.load(self.audio.path)                           # load the audio 
         fig, ax = plt.subplots(1)
         ax.set(title='Waveform')
         ax.label_outer()
-        librosa.display.waveplot(audio, sr=sr, ax=ax)
+        librosa.display.waveplot(audio, sr=sr, ax=ax)                       # display the waveform
         plt.show()
-        plt.savefig(imagePath)
+        plt.savefig(imagePath)                                              # save the image
         plt.close()
         self.image = ImageFile(open(imagePath, 'rb'))
-        self.duration = librosa.get_duration(y=audio,sr=sr)
+        self.duration = librosa.get_duration(y=audio,sr=sr)                 # get the duration
         file_size_byte = os.path.getsize(self.audio.path)
-        self.file_size = file_size_byte/1024
-        self.samp_freq = sr
+        self.file_size = file_size_byte/1024                                # get the file size
+        self.samp_freq = sr                                                 # get the sampling frequency
         super(SongFile,self).save(*args, **kwargs)
 
         def delete(self, *args, **kwargs):                                  # function for deleting the song 
