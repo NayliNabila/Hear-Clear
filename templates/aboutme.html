@@ -10,28 +10,124 @@
 {% endblock %}
 
 {% block content %}
+
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+  }
+  
+  .about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title {
+    color: grey;
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button:hover {
+    background-color: #555;
+  }
+  
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+  }
+  </style>
+  </head>
+  <body>
+  
+  <div class="about-section">
+
    <h1>About Hear Clear</h1>
    <p>
      Hear Clear is a system that use to analyse any sound or music given by user.
    </p>
 
    <p>
-     There are two ways to send the sound :
+     How to use us :
    </p>
 
-   <ul>
-     <li> Record the sound at that moment. </li>
-     <li> Upload the sound file from the device. </li>
-   </ul>
+   <p>
+    You need to upload the audio into Hear Clear. Once the audio is saved, the audio will be listed in the list. You need to click on the song title, then Hear Clear will display the waveform picture, file size, sampling frequency, file type and duration of the audio.
+  </p>
 
-   <p> 
-     Then, user need to click on 'submit' button to starts send the sound to the server to do the analysing process. The output of analyzed will be including:
-   </p>
+  <p>
+    Kindly ask us for any help !
+  </p>
+  </div>
 
-   <ul>
-     <li> Length of Sound. </li>
-     <li> File Type. </li>
-     <li> File Size. </li>
-     <li> Maximum Detected Frequency. </li>
-   </ul>
+  <div style="text-align:center">
+  <h2 style="text-align:center">Our Team (Group 3)</h2>
+  <div class="row" style="text-align:center">
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2>Nayli Nabila</h2>
+          <p class="title">Student of Universiti Teknologi Malaysia</p>
+          <p> SKEL4213 2021</p>
+          <p>nayli1998@graduate.utm.my</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2>Nabilah</h2>
+          <p class="title">Student of Universiti Teknologi Malaysia</p>
+          <p>SKEL4213 2021</p>
+          <p>nabilah.azmi@graduate.utm.my</p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
+

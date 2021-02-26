@@ -67,7 +67,7 @@
 
     <h2>{{songfile.title}}</h2>
     <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
-
+    
     <img src="{{ songfile.image.url }}" width="400" height="379">
 
     <div class="container-audio">
@@ -80,20 +80,39 @@
         <table class="styled-table">
                 <tbody>
                     <tr>
-                      <td> Duration </td>
+                      <td> Duration (seconds)</td>
                       <td> {{ songfile.duration }}</td>
                     </tr>
                     <tr>
-                      <td> File Size </td>
-                      <td> {{ songfile.file_size }}</td>
+                      <td> File Size (kB) </td>
+                      <td> {{ songfile.file_size }} </td>
                     </tr>
                     <tr>
                         <td> Sampling Frequency </td>
                         <td> {{ songfile.samp_freq }}</td>
                     </tr>
+                    <tr>
+                        <td> File Type </td>
+                        <td>  {{ songfile.file_type }} </td>
+                    </tr>
                 </tbody>
         </table>
 
+        <br>
+        <br>
+
+        <h2>Comments...</h2>
+
+        {% if not songfile.comments.all %}
+            No Comments Yet...<a href="{% url 'comments' songfile.pk %}"> Add One</a>
         
-    
+        {% else %}
+            {% for comments in songfile.comments.all %}
+            <br><strong>{{ comments.name }} - {{ comments.date_added }}</strong>
+            <br>
+            {{ comments.body }} <br>
+            {% endfor %}
+            <a href="{% url 'comments' songfile.pk %}"> Add Comments </a>
+        {% endif %}
+
 {% endblock %}

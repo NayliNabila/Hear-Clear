@@ -21,20 +21,23 @@ from django.conf.urls.static import static
 
 from page import views
 from accounts import views as accounts_views
+from page.views import AddCommentView, UserEditView, UploadView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('HearClear', views.home, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('HearClear/aboutme', views.aboutme),
-    path('HearClear/comments', views.comments, name='comments'),
-    path('HearClear/upload', views.upload, name = 'upload'),
+    #path('HearClear/<int:pk>/comments', views.comments, name='comments'),
+    #path('HearClear/upload', views.upload, name = 'upload'),
     path('signup', accounts_views.signup, name='signup'),
     path('HearClear/comments/reply', views.reply, name='reply'),
     path('HearClear/<int:pk>/delete', views.delete_song, name='delete_song'),
     path('HearClear/<int:pk>/', views.songdetails, name='song-detail'),
     path('HearClear/results/', views.searchbar, name='searchbar'),
-    
+    path('HearClear/<int:pk>/comments', AddCommentView.as_view(), name='comments'),
+    path('HearClear/edit_profile', UserEditView.as_view(), name='edit_profile'),
+    path('HearClear/upload', UploadView.as_view(), name = 'upload'),
 ]
 
 if settings.DEBUG:

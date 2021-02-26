@@ -9,14 +9,43 @@
 {% endblock %}
 
 {% block content %}
+
+<style>
+ 
+    
+    /*Responsive table*/
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      background: #34495e; 
+      color: #f3f3f3;
+    }
+    
+    td, th { 
+      padding: 8px; 
+      text-align: left; 
+    }
+    
+    /* Zebra striping */
+    tr:nth-of-type(odd) { 
+      background: #6495ED; 
+    }
+    
+    th { 
+      background: #2c3e50; 
+      font-weight: bold; 
+    }
+    
+    h1 a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    
+      
+</style>
+
     <table class="table">
-        <thead class="thead-inverse">
-            <tr>
-                <th> Title </th>
-                <th> Date </th>
-                <th> Delete </th>
-            <tr>
-        <thead>
 
         <tbody>
 
@@ -27,13 +56,8 @@
 
             {% for songfile in post %}
             <tr>
-                <td> <a href="{% url 'song-detail' songfile.pk %}">{{ songfile.title }} </a>  </td>
+                <td> <a href="{% url 'song-detail' songfile.pk %}" style="color: #000;">{{ songfile.title }} </a>  </td>
                 <td> {{ songfile.date }}</td>
-                <td> 
-                    <form method="post" action = "{% url 'delete_song' songfile.pk %}">
-                    {% csrf_token %}
-                    <button type="submit" class = "btn btn-outline-primary"> Delete </button>
-                    </form> </td>
             </tr>
 
             {% endfor %}

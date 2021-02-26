@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Edit Profile
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home'%}">Hear Clear</a></li>
+  <li class="breadcrumb-item active">Edit Profile</li>
+{% endblock %}
+
+{% block content %}
+
+<h1>Edit Profile ... </h1>
+<br><br>
+
+{{ user.profile.bio }}
+
+<div class = "form-group">
+<form method="POST" >
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+</div>
+{% endblock %}

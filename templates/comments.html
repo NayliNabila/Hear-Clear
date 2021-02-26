@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}
   Comments
 {% endblock %}
@@ -10,16 +12,10 @@
 {% endblock %}
 
 {% block content %}
-
-<form>
-
-</form>
-    <div class="form-group">
-        <label for="formGroupExampleInput">Marie</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="How to upload a song?">
-    </div>
-
-    <div class="mb-4">
-        <a href="comments/reply" class="btn btn-success" role="button">Reply</a>
-    </div>
+  <h2>Comments</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+      <button type="submit" class="btn btn-primary">Send</button>
+  </form>
 {% endblock %}
