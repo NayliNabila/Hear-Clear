@@ -12,9 +12,7 @@ In this project, we allow for the user to upload and play the audio uploaded int
     3) File Type
     4) File Size
     5) Sampling Frequency
-
-# Database Table 
-
+ 
 
 # Hear Clear Website
 
